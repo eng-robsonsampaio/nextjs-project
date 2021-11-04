@@ -1,9 +1,6 @@
 import eventlet
 import socketio
 
-from random import randint, randrange
-from time import sleep
-
 sio = socketio.Server(cors_allowed_origins="*")
 app = socketio.WSGIApp(sio)
 
