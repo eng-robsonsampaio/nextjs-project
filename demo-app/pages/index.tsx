@@ -1,25 +1,28 @@
 import type { NextPage } from 'next'
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { handlerWebSocket, requestSoundLevel} from './client'
 import { useFanNoiseContext } from '../providers/fanNoise'
+import Image from 'next/image'
+
 
 const Home: NextPage = () => {
 
   const [splValue, setSplValue] = useState(null);
   const [value, setValue] = useState(null);
 
-  const { soundLevel, 
+  const { soundLevel,
+          init,  
           requestSoundLevel 
         } = useFanNoiseContext();
 
   useEffect(()=>{
-      requestSoundLevel();
+      init()
+      // requestSoundLevel();
   })
   
   return (
+    <>
     <div className={styles.mainContainer}>
       <div className={styles.container}>
         <Head>
@@ -39,6 +42,7 @@ const Home: NextPage = () => {
         <div className={styles.values}>{soundLevel}</div>
       </div>
     </div>
+    </>
 
     
   )

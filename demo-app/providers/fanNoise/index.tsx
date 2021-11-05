@@ -3,43 +3,52 @@ import { createContext, useContext } from 'use-context-selector';
 import { io } from 'socket.io-client';
 
 interface FanNoiseContextProps {
-    // initSocket: () => void;
-    requestSoundLevel: () => void;
-    soundLevel: number;
+    
+  init: () => void;
+  requestSoundLevel: () => void;
+  soundLevel: number;
     
 }
-
-
 
 const FanNoiseContext = createContext<FanNoiseContextProps>(
   {} as FanNoiseContextProps,
 );
+
 const FanNoiseProvider: React.FC = ({ children }) => {
 
-    const socket  = io('http://localhost:50000');
+    
     const [soundLevel, setSoundLevel] = useState(0);
+    const socket = io('http://localhost:50000');
 
-    function requestSoundLevel(){
-        
-       
-        console.log('Request sound level')
+    function init(){
+      // const socket  = io('http://localhost:50000');
+      // console.log("Init Socket connection: ", socket.connected)
+    }
 
-        if(socket.connected){
-            socket.emit('request', 'sound_level')
-
-            socket.on('sound_level', (data) => {
-                console.log('Data: ', data)                
-                setTimeout(() => {
-                    setSoundLevel(data.res)
-                }, 1000)
-            })
-        }
+    function requestSoundLevel(){ 
+      // socket.open()  
+      if(socket.connected){
+        console.log("Socket connected: ", socket.connected)
+        socket.emit('request', 'Sound Level')
+        socket.on('response', (data) => { 
+          console.log(data.res)
+          setSoundLevel(data.res)               
+          // setTimeout(() => {
+              
+          // }, 1000)
+        })
+        // socket.close()
+      }
+      else if(!socket.connected){
+        console.log("Socket connected: ", socket.connected)
+      }
     }
  
 
   return (
     <FanNoiseContext.Provider
       value={{
+        init, 
         requestSoundLevel,
         soundLevel
       }}
