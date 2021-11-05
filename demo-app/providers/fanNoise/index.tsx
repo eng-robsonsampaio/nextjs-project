@@ -4,7 +4,6 @@ import { io } from 'socket.io-client';
 
 interface FanNoiseContextProps {
     
-  init: () => void;
   requestSoundLevel: () => void;
   soundLevel: number;
     
@@ -20,24 +19,15 @@ const FanNoiseProvider: React.FC = ({ children }) => {
     const [soundLevel, setSoundLevel] = useState(0);
     const socket = io('http://localhost:50000');
 
-    function init(){
-      // const socket  = io('http://localhost:50000');
-      // console.log("Init Socket connection: ", socket.connected)
-    }
-
     function requestSoundLevel(){ 
-      // socket.open()  
+      
       if(socket.connected){
         console.log("Socket connected: ", socket.connected)
         socket.emit('request', 'Sound Level')
         socket.on('response', (data) => { 
           console.log(data.res)
           setSoundLevel(data.res)               
-          // setTimeout(() => {
-              
-          // }, 1000)
         })
-        // socket.close()
       }
       else if(!socket.connected){
         console.log("Socket connected: ", socket.connected)
@@ -48,7 +38,6 @@ const FanNoiseProvider: React.FC = ({ children }) => {
   return (
     <FanNoiseContext.Provider
       value={{
-        init, 
         requestSoundLevel,
         soundLevel
       }}

@@ -12,14 +12,8 @@ const Home: NextPage = () => {
   const [value, setValue] = useState(null);
 
   const { soundLevel,
-          init,  
           requestSoundLevel 
         } = useFanNoiseContext();
-
-  useEffect(()=>{
-      init()
-      // requestSoundLevel();
-  })
   
   return (
     <>
