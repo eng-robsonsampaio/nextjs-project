@@ -3,17 +3,22 @@ import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useFanNoiseContext } from '../providers/fanNoise'
+import { useSocketConnectionContext } from '../providers/socketConnection'
 import Image from 'next/image'
 
 
 const Home: NextPage = () => {
 
-  const [splValue, setSplValue] = useState(null);
-  const [value, setValue] = useState(null);
+  const [test, setTest] = useState(null);  // const [splValue, setSplValue] = useState(null);
+  // const [value, setValue] = useState(null);
 
-  const { soundLevel,
-          requestSoundLevel 
-        } = useFanNoiseContext();
+  const { statusTest1,
+          statusTest2,
+          statusTest3,
+          startTest1,
+          startTest2,
+          startTest3
+        } = useSocketConnectionContext();
   
   return (
     <>
@@ -30,10 +35,15 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className={styles.rowValues}>
-        <div>
-          <button className={styles.button} onClick={() => requestSoundLevel() }>Start</button>
+        <div className={styles.testField}>
+          status:
         </div>
-        <div className={styles.values}>{soundLevel}</div>
+        <div className={styles.testField}>
+          status:
+        </div>
+        <div className={styles.testField}>
+          status:
+        </div>
       </div>
     </div>
     </>

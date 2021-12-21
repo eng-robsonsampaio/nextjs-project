@@ -28,6 +28,17 @@
   max-height: max-content;
 }
 
+.testField {
+  max-width: 200px;
+  margin: auto 40px;
+  overflow: auto;
+  min-height: 30px;
+  border: 2px solid chartreuse;
+  background-color: aliceblue;
+  padding: 30px;
+  border-radius: 10px;
+}
+
 .values {
   color: #fff;
   font-weight: bold;
