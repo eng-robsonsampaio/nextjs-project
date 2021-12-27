@@ -24,9 +24,32 @@ const SocketConnectionProvider: React.FC = ({ children }) => {
     const [statusTest3, setStatusTest3] = useState(0);
     const socket = io('http://localhost:50000');
 
+    socket.on('teste_um', (data) => {
+      console.log('Dentro o teste 1')
+      console.log(data)
+    })
+
+    socket.on('teste_dois', (data) => {
+      console.log('Dentro o teste 2')
+      console.log(data)
+    })
+
+    socket.on('teste_tres', (data) => {
+      console.log('Dentro o teste 31')
+      console.log(data)
+    })
+
     function startTest1(){
-        
-        return statusTest1
+      // if(socket.connected){
+      //   console.log("Socket connected: ", socket.connected)
+      //   socket.on('teste_um', (data) => { 
+      //     console.log(data)             
+      //   })
+      // }
+      // else if(!socket.connected){
+      //   console.log("Socket connected: ", socket.connected)
+      // }
+      //   return statusTest1
     }
 
     function startTest2(){

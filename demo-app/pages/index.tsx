@@ -2,23 +2,28 @@ import type { NextPage } from 'next'
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { useFanNoiseContext } from '../providers/fanNoise'
-import { useSocketConnectionContext } from '../providers/socketConnection'
+import { io } from 'socket.io-client'
+
+// import { useFanNoiseContext } from '../providers/fanNoise'
+// import { useSocketConnectionContext } from '../providers/socketConnection'
 import Image from 'next/image'
 
 
 const Home: NextPage = () => {
 
-  const [test, setTest] = useState(null);  // const [splValue, setSplValue] = useState(null);
-  // const [value, setValue] = useState(null);
+  const [test, setTest] = useState(null); 
+  const socket = io('http://localhost:50000');
 
-  const { statusTest1,
-          statusTest2,
-          statusTest3,
-          startTest1,
-          startTest2,
-          startTest3
-        } = useSocketConnectionContext();
+  useEffect(() =>{
+    socket.on('connect', () => {
+      console.log('Connected: ', socket.connected)
+    })
+    
+    socket.on('teste_um', (data) => {
+      console.log('Sera quue chegou: ', data)
+    })
+  },[])
+
   
   return (
     <>
