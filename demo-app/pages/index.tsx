@@ -1,15 +1,13 @@
 import type { NextPage } from 'next'
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Index.module.css'
 import { io } from 'socket.io-client'
 
-// import { useFanNoiseContext } from '../providers/fanNoise'
-// import { useSocketConnectionContext } from '../providers/socketConnection'
 import Image from 'next/image'
 
 
-const Home: NextPage = () => {
+const Index: NextPage = () => {
 
   const [test, setTest] = useState(null); 
   const socket = io('http://localhost:50000');
@@ -57,4 +55,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Index

@@ -1,0 +1,67 @@
+.mainContainer { 
+  display:flex; 
+  flex-direction:column;
+  justify-content: center;
+}
+
+.container {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 2px solid chartreuse;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.splContainer {
+  color: #fff;
+  text-align: center;
+  font-size: 150px;
+}
+
+.rowValues {
+  margin: 30px auto;
+  display:inline-flex; 
+  max-width: max-content;
+  max-height: max-content;
+}
+
+.testField {
+  max-width: 200px;
+  margin: auto 40px;
+  overflow: auto;
+  min-height: 30px;
+  border: 2px solid chartreuse;
+  background-color: aliceblue;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.values {
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #4CAF50;
+  font-size: 16px;
+  padding: 11px 32px;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  width: initial;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #27a32b; /* Green */
+  color: white;
+  font-weight: bold;
+}
