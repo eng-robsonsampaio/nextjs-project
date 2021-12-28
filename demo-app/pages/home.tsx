@@ -4,7 +4,9 @@ const home = () => {
 
     return (
         <div className={styles.mainContainer}>
-            <div className={styles.header}
+            <div className={styles.header}>
+                
+            </div>
             Testando a home
         </div>
     );
