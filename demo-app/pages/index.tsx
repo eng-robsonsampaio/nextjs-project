@@ -12,14 +12,39 @@ const Index: NextPage = () => {
   const [test, setTest] = useState(null); 
   const socket = io('http://localhost:50000');
 
+  
   useEffect(() =>{
     socket.on('connect', () => {
       console.log('Connected: ', socket.connected)
-    })
-    
-    socket.on('teste_um', (data) => {
-      console.log('Sera quue chegou: ', data)
-    })
+    });
+  },[])
+
+
+  useEffect(() =>{
+    socket.on('disconnect', () => {
+      console.log('Connected: ', socket.connected)
+    });
+  },[])
+
+
+  useEffect(() =>{
+    socket.on('speaker_test', (data) => {
+      console.log('speaker_test: ', data.action)
+    });
+  },[])
+
+
+  useEffect(() =>{
+    socket.on('fan_test', (data) => {
+      console.log('fan_test: ', data.action)
+    });
+  },[])
+
+
+  useEffect(() =>{
+    socket.on('noise_test', (data) => {
+      console.log('noise_test: ', data.action)
+    });
   },[])
 
   
