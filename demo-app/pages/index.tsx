@@ -15,17 +15,15 @@ const Index: NextPage = () => {
   
   useEffect(() =>{
     socket.on('connect', () => {
-      console.log('Connected: ', socket.connected)
+      console.log('Connected socket: ', socket.connected)
     });
   },[])
-
 
   useEffect(() =>{
     socket.on('disconnect', () => {
-      console.log('Connected: ', socket.connected)
+      console.log('Connected socket: ', socket.connected)
     });
   },[])
-
 
   useEffect(() =>{
     socket.on('speaker_test', (data) => {
@@ -33,20 +31,39 @@ const Index: NextPage = () => {
     });
   },[])
 
-
-  useEffect(() =>{
-    socket.on('fan_test', (data) => {
-      console.log('fan_test: ', data.action)
-    });
-  },[])
-
-
   useEffect(() =>{
     socket.on('noise_test', (data) => {
       console.log('noise_test: ', data.action)
     });
   },[])
 
+  
+  useEffect(() =>{
+    socket.on('mqtt_connected', (data) => {
+      console.log('mqtt_connected: ', data)
+    });
+  },[])
+
+  useEffect(() =>{
+    socket.on('mqtt_connection_fail', (data) => {
+      console.log('mqtt_connection_fail: ', data)
+    });
+  },[])
+
+  useEffect(() =>{
+    socket.on('mqtt_connected', (data) => {
+      console.log('mqtt_connected: ', data)
+    });
+  },[])
+
+  function set_credentials(){
+    socket.volatile.emit('set_credentials', {
+      user: 'mqtt-test',
+      psk: 'mqtt-test',
+      address: 'broker.hivemq.com',
+      port: 1883
+    });
+  }
   
   return (
     <>
@@ -63,15 +80,7 @@ const Index: NextPage = () => {
         </div>
       </div>
       <div className={styles.rowValues}>
-        <div className={styles.testField}>
-          status:
-        </div>
-        <div className={styles.testField}>
-          status:
-        </div>
-        <div className={styles.testField}>
-          status:
-        </div>
+        <button onClick={set_credentials}>Add</button>
       </div>
     </div>
     </>
